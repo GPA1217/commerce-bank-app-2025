@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const checkURL = () => {
+const CheckURL = () => {
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState(null);
   const [sslStatus, setSslStatus] = useState(null);
@@ -126,4 +126,4 @@ const checkURL = () => {
   );
 };
 
-export default checkURL;
+export default CheckURL;
