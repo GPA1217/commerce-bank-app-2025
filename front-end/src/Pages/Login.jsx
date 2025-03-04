@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -10,131 +10,73 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setError(null);
-
-    // Simple login validation (you can replace this with actual logic)
     if (email && password) {
-      // Redirect to WebScraper page after successful login
-      navigate("/webscraper");
+      navigate("/check");
     } else {
       setError("Please enter a valid email and password.");
     }
   };
 
-  const containerStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: "100vh",
-    backgroundColor: "#f7fafc",
-  };
-
-  const formStyle = {
-    backgroundColor: "white",
-    padding: "32px",
-    borderRadius: "12px",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    width: "100%",
-    maxWidth: "400px",
-  };
-
-  const headingStyle = {
-    fontSize: "24px",
-    fontWeight: "600",
-    color: "#2d3748",
-    textAlign: "center",
-    marginBottom: "12px",
-  };
-
-  const paragraphStyle = {
-    color: "#4a5568",
-    textAlign: "center",
-    marginBottom: "24px",
-  };
-
-  const labelStyle = {
-    display: "block",
-    color: "#4a5568",
-    fontWeight: "500",
-    marginBottom: "8px",
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "12px",
-    border: "1px solid #e2e8f0",
-    borderRadius: "8px",
-    marginBottom: "16px",
-    fontSize: "16px",
-  };
-
-  const buttonStyle = {
-    width: "100%",
-    padding: "12px",
-    backgroundColor: "#3182ce",
-    color: "white",
-    fontWeight: "600",
-    borderRadius: "8px",
-    border: "none",
-    cursor: "pointer",
-    transition: "background-color 0.3s",
-  };
-
-  const buttonHoverStyle = {
-    ...buttonStyle,
-    backgroundColor: "#2b6cb0",
-  };
-
   return (
-    <div style={containerStyle}>
-      <div style={formStyle}>
-        <h2 style={headingStyle}>Login</h2>
-        <p style={paragraphStyle}>Access your account securely</p>
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="relative w-full max-w-md space-y-8">
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-30 rounded-lg"></div>
+        <div className="relative z-10 bg-gray-800 px-6 py-8 rounded-lg shadow-lg space-y-6">
+          <h2 className="text-3xl font-semibold text-center text-white">Login</h2>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Enter your email"
+              />
+            </div>
 
-        <form onSubmit={handleLogin}>
-          <div>
-            <label style={labelStyle}>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={inputStyle}
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-          <div>
-            <label style={labelStyle}>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={inputStyle}
-              placeholder="Enter your password"
-              required
-            />
-          </div>
-          {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
-          <div style={{ textAlign: "right", marginBottom: "16px" }}>
-            <Link to="/forgot-password" style={{ color: "#3182ce", textDecoration: "underline" }}>
-              Forgot password?
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-300">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Enter your password"
+              />
+            </div>
+
+            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+            <div className="flex items-center justify-between">
+              <div className="text-sm">
+                <Link to="/forgot-password" className="font-medium text-indigo-400 hover:text-indigo-500">
+                  Forgot your password?
+                </Link>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Login
+            </button>
+          </form>
+
+          <p className="text-center text-sm text-gray-400">
+            Don't have an account?{" "}
+            <Link to="/register" className="font-medium text-indigo-400 hover:text-indigo-500">
+              Register
             </Link>
-          </div>
-          <button
-            type="submit"
-            style={buttonStyle}
-            onMouseOver={(e) => e.target.style.backgroundColor = buttonHoverStyle.backgroundColor}
-            onMouseOut={(e) => e.target.style.backgroundColor = buttonStyle.backgroundColor}
-          >
-            Login
-          </button>
-        </form>
-
-        <p style={{ textAlign: "center", color: "#4a5568", marginTop: "16px" }}>
-          Don't have an account?{" "}
-          <Link to="/register" style={{ color: "#3182ce", textDecoration: "underline" }}>
-            Register
-          </Link>
-        </p>
+          </p>
+        </div>
       </div>
     </div>
   );
