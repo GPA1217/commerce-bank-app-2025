@@ -1,82 +1,62 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import '../index.css'; // Global CSS for basic styles
+import Background from '../Components/background'; // Import Background component
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setError(null);
-    if (email && password) {
-      navigate("/check");
-    } else {
-      setError("Please enter a valid email and password.");
-    }
+    console.log('Logging in with:', username, password);
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="relative w-full max-w-md space-y-8">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-30 rounded-lg"></div>
-        <div className="relative z-10 bg-gray-800 px-6 py-8 rounded-lg shadow-lg space-y-6">
-          <h2 className="text-3xl font-semibold text-center text-white">Login</h2>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter your email"
-              />
-            </div>
+    <div className="login-page min-h-screen flex justify-center items-center bg-[#080710] relative">
+      {/* Include Background component */}
+      <Background />
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-300">Password</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter your password"
-              />
-            </div>
+      {/* Login Form (Front of the Layers) */}
+      <div className="login-page-inner bg-white bg-opacity-10 border-2 border-white border-opacity-10 shadow-xl rounded-xl backdrop-blur-lg p-8 w-96 z-10 relative">
+        <header className="header text-center text-4xl font-semibold text-white mb-12">
+          <h1>Login</h1>
+        </header>
 
-            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+        <form onSubmit={handleLogin}>
+          <div className="mb-6">
+            <label htmlFor="username" className="label text-white mb-1 block">Username:</label>
+            <input
+              id="username"
+              type="text"
+              className="input-field w-full bg-[#37373E] text-white h-12 rounded-sm p-3 text-sm"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter username"
+              required
+            />
+          </div>
 
-            <div className="flex items-center justify-between">
-              <div className="text-sm">
-                <Link to="/forgot-password" className="font-medium text-indigo-400 hover:text-indigo-500">
-                  Forgot your password?
-                </Link>
-              </div>
-            </div>
+          <div className="mb-6">
+            <label htmlFor="password" className="label text-white mb-1 block">Password:</label>
+            <input
+              id="password"
+              type="password"
+              className="input-field w-full bg-[#37373E] text-white h-12 rounded-sm p-3 text-sm"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter password"
+              required
+            />
+          </div>
 
-            <button
-              type="submit"
-              className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              Login
-            </button>
-          </form>
+          <button type="submit" className="button w-full bg-white text-gray-800 py-3 text-lg font-semibold rounded-md hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Log In
+          </button>
+        </form>
 
-          <p className="text-center text-sm text-gray-400">
-            Don't have an account?{" "}
-            <Link to="/register" className="font-medium text-indigo-400 hover:text-indigo-500">
-              Register
-            </Link>
-          </p>
-        </div>
+        <footer className="footer text-white text-center mt-8">
+          <p>Commerce Bank  © 2025</p>
+        </footer>
       </div>
     </div>
   );

@@ -1,3 +1,174 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* General Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 1), rgba(21, 32, 43, 1)); /* Darker background */
+    background-size: 400% 400%;
+    animation: gradientBackground 6s ease infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Background Squares */
+.square {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: moveSquares 10s infinite;
+    border-radius: 5px;
+  }
+  
+  @keyframes moveSquares {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(200px, 200px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+/* Login Container */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .login-page-inner {
+    background-color: rgba(255, 255, 255, 0.2); /* Brighter white */
+    border: 2px solid rgba(255, 255, 255, 0.25); /* Lighter border */
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.8); /* Subtle shadow */
+    border-radius: 15px;
+    backdrop-filter: blur(20px);
+    padding: 90px 40px;
+    width: 500px;
+    position: relative;
+    z-index: 10; /* This ensures the login form is above the squares */
+  }
+
+.header {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Stronger text-shadow */
+}
+
+.label {
+  color: white;
+  margin-bottom: 2px;
+}
+
+.input-field {
+  background: rgb(40 40 47); /* Darker input field */
+  color: white;
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  padding: 12px 15px;
+  font-size: 14px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(29, 78, 216, 0.4); /* Subtle glow */
+}
+
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 18px rgba(29, 78, 216, 0.7); /* Focus glow */
+}
+
+.button {
+  cursor: pointer;
+  min-width: 80px;
+  text-transform: uppercase;
+  border: 0;
+  background-color: #fff;
+  color: #333;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 20px;
+  transition: background-color 300ms ease, transform 150ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button:hover {
+  background-color: #1e40af; /* Brighter blue */
+  color: white;
+  transform: translateY(-3px);
+}
+
+.button:active {
+  background-color: #f5a623; /* Bright orange */
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background-color: #1e40af;
+  transition: all 0.5s ease;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.3;
+}
+
+.button:hover::before {
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+.footer {
+  color: rgba(255, 255, 255, 0.8); /* Lighter footer text */
+  text-align: center;
+  margin-top: 30px;
+  animation: fadeIn 4s ease-in-out infinite; /* Increased time for fade-in */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
