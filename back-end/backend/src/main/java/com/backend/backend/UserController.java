@@ -1,4 +1,6 @@
 package com.backend.backend;
+import com.backend.backend.User;
+import com.backend.backend.UserService; 
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
